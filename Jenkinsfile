@@ -9,11 +9,11 @@ pipeline {
     
     stages {
         
-        // stage("build checkout") {
-        //     steps {
-        //         git 'https://github.com/ecarmona1992/SimpleFlaskUI.git'
-        //     }
-        // }
+        stage("build checkout") {
+            steps {
+                git 'https://github.com/ecarmona1992/SimpleFlaskUI.git'
+            }
+        }
         
         stage('Build Image') {
             steps {
