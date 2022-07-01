@@ -24,20 +24,25 @@ pipeline {
                 }
             }
         }
-        stage("Testing - running Jenkins Node") {
+
+
+
+        stage('Test - Run Docker Container on Jenkins node') {
+           steps {
+
+                sh label: '', script: "docker run -d --name ${JOB_NAME} -p 5000:5000 ${img}"
+          }
+        }
+
+        stage('Push To DockerHub') {
             steps {
-                sh 'docker run -d --name $(JOB_NAME) -p 5000:5000 ${img}'
+                script {
+                    docker.withRegistry( 'https://registry.hub.docker.com ', registryCredential ) {
+                        dockerImage.push()
+                    }
+                }
             }
         }
         
-        stage("Push to DockerHub") {
-            steps {
-                script{
-                    docker.withRegistry('https://registry.hub.docker.com', registryCredential) {
-                    dockerImage.push()
-                }
-                }
-            }
-        }
     }
 }
