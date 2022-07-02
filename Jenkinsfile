@@ -1,10 +1,10 @@
-// def img
+def img
 pipeline {
-    // environment {
-    //     registry = "ecarmona1992/project1"
-    //     registrycredential = 'docker-hub-login'
-    //     dockerimage = ''
-    // }
+    environment {
+        registry = "ecarmona1992/project1"
+        registrycredential = 'docker-hub-login'
+        dockerimage = ''
+    }
     agent any
     
     stages {
@@ -15,15 +15,15 @@ pipeline {
             }
         }
         
-        // stage('Build Image') {
-        //     steps {
-        //         script {
-        //             img = registry + ":${env.BUILD_ID}"
-        //             println ("${img}")
-        //             dockerImage = docker.build("${img}")
-        //         }
-        //     }
-        // }
+        stage('Build Image') {
+            steps {
+                script {
+                    img = registry + ":${env.BUILD_ID}"
+                    println ("${img}")
+                    dockerImage = docker.build("${img}")
+                }
+            }
+        }
 
 
 
