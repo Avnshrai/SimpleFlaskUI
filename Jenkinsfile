@@ -8,6 +8,12 @@ pipeline {
     agent any
     
     stages {
+
+        stage('checkout') {
+            steps {
+                git 'https://github.com/kss7/SimpleFlaskUI.git'
+            }
+        }
         
         stage('build checkout') {
             steps {
