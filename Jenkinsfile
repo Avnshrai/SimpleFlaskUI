@@ -8,15 +8,10 @@ pipeline {
     agent any
     
     stages {
-
-        stage('checkout') {
-            steps {
-                git 'https://github.com/kss7/SimpleFlaskUI.git'
-            }
-        }
         
-        stage('build checkout') {
+        stage('download') {
             steps {
+                git 'https://github.com/ecarmona1992/SimpleFlaskUI.git'
                 echo 'Finshed downloading git'
             }
         }
