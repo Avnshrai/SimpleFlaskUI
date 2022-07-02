@@ -1,14 +1,13 @@
-def img
+// def img
 pipeline {
-    environment {
-        registry = "ecarmona1992/project1"
-        registrycredential = 'docker-hub-login'
-        dockerimage = ''
-    }
+    // environment {
+    //     registry = "ecarmona1992/project1"
+    //     registrycredential = 'docker-hub-login'
+    //     dockerimage = ''
+    // }
     agent any
     
     stages {
-        
         stage('download') {
             steps {
                 git 'https://github.com/ecarmona1992/SimpleFlaskUI.git'
@@ -16,34 +15,34 @@ pipeline {
             }
         }
         
-        stage('Build Image') {
-            steps {
-                script {
-                    img = registry + ":${env.BUILD_ID}"
-                    println ("${img}")
-                    dockerImage = docker.build("${img}")
-                }
-            }
-        }
+        // stage('Build Image') {
+        //     steps {
+        //         script {
+        //             img = registry + ":${env.BUILD_ID}"
+        //             println ("${img}")
+        //             dockerImage = docker.build("${img}")
+        //         }
+        //     }
+        // }
 
 
 
-        stage('Test - Run Docker Container on Jenkins node') {
-           steps {
+        // stage('Test - Run Docker Container on Jenkins node') {
+        //    steps {
 
-                sh label: '', script: "docker run -d --name ${JOB_NAME} -p 5000:5000 ${img}"
-          }
-        }
+        //         sh label: '', script: "docker run -d --name ${JOB_NAME} -p 5000:5000 ${img}"
+        //   }
+        // }
 
-        stage('Push To DockerHub') {
-            steps {
-                script {
-                    docker.withRegistry( 'https://registry.hub.docker.com ', registryCredential ) {
-                        dockerImage.push()
-                    }
-                }
-            }
-        }
+        // stage('Push To DockerHub') {
+        //     steps {
+        //         script {
+        //             docker.withRegistry( 'https://registry.hub.docker.com ', registryCredential ) {
+        //                 dockerImage.push()
+        //             }
+        //         }
+        //     }
+        // }
 
     }
 }
