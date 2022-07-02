@@ -2,14 +2,14 @@ def img
 pipeline {
     environment {
         registry = "ecarmona1992/project1"
-        registrycredential = "docker-hub-login"
+        registrycredential = 'docker-hub-login'
         dockerimage = ''
     }
     agent any
     
     stages {
         
-        stage("build checkout") {
+        stage('build checkout') {
             steps {
                 echo 'Finshed downloading git'
             }
@@ -43,6 +43,6 @@ pipeline {
                 }
             }
         }
-        
+
     }
 }
